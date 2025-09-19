@@ -1,77 +1,836 @@
+Below are three complete files. Replace your existing files with these.
+
+---
+
+## index.html
+
+```html
 <!DOCTYPE html>
 <html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Navida Ahmadi – ECE Portfolio | About Me</title>
+  <meta name="description" content="About me – Early Childhood Education (ECE) student portfolio." />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%235c62ff'/><text x='50' y='62' font-size='64' text-anchor='middle' fill='white' font-family='Arial'>☺</text></svg>">
+  <style>
+    :root {
+      --bg: #0f1221;
+      --card: #161a2f;
+      --soft: #202544;
+      --text: #e9ecf8;
+      --subtle: #b8bfdd;
+      --brand: #6aa9ff;
+      --accent: #ffd27e;
+      --ok: #73e0a9;
+      --danger: #ff7f98;
+      --radius-xl: 24px;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --shadow-1: 0 10px 30px rgba(0, 0, 0, .35);
+      --shadow-2: 0 30px 60px rgba(0, 0, 0, .45);
+      --maxw: 1100px;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif
+    }
+
+    img {
+      max-width: 100%;
+      display: block
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    .container {
+      max-width: var(--maxw);
+      margin-inline: auto;
+      padding: clamp(16px, 3vw, 28px)
+    }
+
+    .grid {
+      display: grid;
+      gap: clamp(16px, 2.5vw, 24px)
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: linear-gradient(180deg, rgba(15, 18, 33, .9), rgba(15, 18, 33, .65));
+      backdrop-filter: saturate(1.2) blur(8px);
+      border-bottom: 1px solid rgba(255, 255, 255, .06)
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--brand), #9ed0ff);
+      box-shadow: var(--shadow-1);
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      color: #0b1022
+    }
+
+    .brand span {
+      font-weight: 700;
+      letter-spacing: .4px
+    }
+
+    .menu {
+      display: flex;
+      gap: 18px;
+      align-items: center
+    }
+
+    .menu a {
+      color: var(--subtle);
+      padding: 10px 12px;
+      border-radius: 10px
+    }
+
+    .menu a:hover {
+      background: rgba(255, 255, 255, .06);
+      color: var(--text)
+    }
+
+    .cta {
+      background: var(--brand);
+      color: #0b1022;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-weight: 700;
+      box-shadow: 0 10px 20px rgba(106, 169, 255, .25)
+    }
+
+    .burger {
+      display: none
+    }
+
+    @media (max-width: 820px) {
+      .menu {
+        display: none
+      }
+
+      .burger {
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(255, 255, 255, .1);
+        width: 44px;
+        height: 44px;
+        border-radius: 12px
+      }
+    }
+
+    .hero {
+      padding-top: clamp(24px, 4vw, 48px);
+      padding-bottom: clamp(24px, 6vw, 72px)
+    }
+
+    .hero-grid {
+      grid-template-columns: 1.2fr .8fr;
+      align-items: center
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      background: rgba(255, 255, 255, .06);
+      color: var(--subtle);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, .08)
+    }
+
+    h1 {
+      font-size: clamp(28px, 4.6vw, 52px);
+      line-height: 1.1;
+      margin: 14px 0 10px
+    }
+
+    .lead {
+      font-size: clamp(16px, 2.1vw, 18px);
+      color: var(--subtle)
+    }
+
+    .btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px
+    }
+
+    .btn {
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-weight: 700
+    }
+
+    .btn.primary {
+      background: var(--brand);
+      color: #0b1022;
+      box-shadow: 0 16px 30px rgba(106, 169, 255, .25)
+    }
+
+    .btn.ghost {
+      border: 1px solid rgba(255, 255, 255, .18);
+      color: var(--text)
+    }
+
+    .portrait-wrap {
+      position: relative
+    }
+
+    .blob {
+      position: absolute;
+      inset: -18px;
+      z-index: -1;
+      filter: blur(10px);
+      opacity: .7
+    }
+
+    .portrait {
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, .08);
+      box-shadow: var(--shadow-2);
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, 0))
+    }
+
+    .tag-stack {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 14px
+    }
+
+    .pill {
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .08);
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--subtle);
+      font-size: 13px
+    }
+
+    section {
+      padding-block: clamp(26px, 6vw, 80px)
+    }
+
+    .section-title {
+      font-size: clamp(22px, 3.4vw, 34px);
+      margin: 0 0 12px
+    }
+
+    .section-sub {
+      color: var(--subtle);
+      margin-bottom: 26px
+    }
+
+    .about-card {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-1);
+      padding: clamp(16px, 3vw, 28px)
+    }
+
+    .about-grid {
+      grid-template-columns: 1fr 1fr
+    }
+
+    @media (max-width: 900px) {
+      .about-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .statbar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 14px
+    }
+
+    .stat {
+      background: var(--soft);
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 16px;
+      padding: 14px;
+      text-align: center
+    }
+
+    .stat b {
+      font-size: 22px;
+      display: block
+    }
+
+    .stat span {
+      color: var(--subtle);
+      font-size: 13px
+    }
+
+    .cards {
+      grid-template-columns: repeat(2, 1fr)
+    }
+
+    @media (max-width: 900px) {
+      .cards {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .card .meta {
+      color: var(--subtle);
+      font-size: 14px
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      align-self: flex-start;
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .1);
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--ok);
+      font-weight: 700
+    }
+
+    .card ul {
+      margin: 8px 0 0 18px
+    }
+
+    .cta-wrap {
+      background: linear-gradient(180deg, rgba(106, 169, 255, .18), rgba(106, 169, 255, 0));
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: var(--radius-xl);
+      padding: clamp(18px, 3.5vw, 32px)
+    }
+
+    footer {
+      padding: 24px 0;
+      color: var(--subtle)
+    }
+
+    .muted {
+      color: var(--subtle)
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Home">
+        <div class="brand-logo">🌱</div>
+        <span>Navida Ahmadi • ECE</span>
+      </a>
+      <nav class="menu" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="philosophy.html">My Philosophy</a>
+        <a href="#placements">Placements</a>
+        <a href="#skills">Skills</a>
+        <a href="resume.html">Resume/CV</a>
+        <a class="cta" href="#contact">Contact</a>
+      </nav>
+      <button class="burger" aria-label="Open menu" onclick="toggleMenu()">☰</button>
+    </div>
+  </header>
+
+  <main id="top" class="hero container">
+    <div class="grid hero-grid">
+      <div>
+        <span class="eyebrow"><b>Final-year ECE Student</b> • Portfolio</span>
+        <h1>Hi, I’m <span style="color:var(--accent)">Navida Ahmadi</span> — I help little learners grow through play,
+          curiosity, and care.</h1>
+        <p class="lead">I’m completing my last year in Early Childhood Education and have completed two enriching work
+          placements at different childcare centers. I design playful, safe, and inclusive learning experiences while
+          building warm relationships with children, families, and colleagues.</p>
+        <div class="btns">
+          <a class="btn primary" href="#contact">Get in touch</a>
+          <a class="btn ghost" href="resume.html">View résumé</a>
+        </div>
+        <div class="tag-stack" aria-label="Quick facts">
+          <span class="pill">CPR/First Aid Certified</span>
+          <span class="pill">ELECT &amp; HDLH informed</span>
+          <span class="pill">Play‑based Curriculum</span>
+          <span class="pill">Parent Communication</span>
+        </div>
+      </div>
+
+      <div class="portrait-wrap">
+        <svg class="blob" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path fill="#6aa9ff"
+            d="M46.1,-63.5C57.7,-54,62.7,-37.9,69.3,-21.7C75.8,-5.6,84,10.6,81.4,24.6C78.8,38.6,65.5,50.4,51.8,62.3C38.1,74.1,24,86,8.1,92.5C-7.7,99.1,-25.3,100.3,-40.5,93.6C-55.8,86.8,-68.8,72.2,-77.2,56C-85.7,39.8,-89.7,21.9,-89.2,4.5C-88.7,-12.8,-83.7,-29.7,-74,-43.1C-64.3,-56.4,-49.9,-66.2,-34.3,-73.5C-18.7,-80.7,-9.4,-85.4,4.8,-92C19,-98.7,38.1,-107.1,46.1,-63.5Z"
+            transform="translate(100 100)" />
+        </svg>
+        <figure class="portrait">
+          <img src="./assets/na.png" alt="Portrait of Navida Ahmadi smiling" />
+        </figure>
+        <div class="tag-stack">
+          <span class="pill" title="Estimated practicum hours"><strong>600+</strong> hours</span>
+          <span class="pill">Infants–Preschool</span>
+          <span class="pill">Inclusive &amp; Safe</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <section id="about" class="container">
+    <h2 class="section-title">About Me</h2>
+    <p class="section-sub">I’m passionate about nurturing the whole child—social, emotional, physical, and
+      cognitive—through responsive relationships and meaningful play.</p>
+
+    <div class="about-card grid about-grid">
+      <div>
+        <h3>My ECE Journey</h3>
+        <p>
+          I’m in my final year of the <strong>Early Childhood Education</strong> program at <em>Durham College</em>.
+          Over the past two work placements, I’ve supported classrooms across age groups, collaborated with RECEs, and
+          documented learning aligned with the <strong>Ontario ELECT</strong> framework and <strong>How Does Learning
+            Happen?</strong> (HDLH). I bring calm energy, creativity, and careful attention to safety.
+        </p>
+        <p>
+          I love setting up invitations to play, observing children’s interests, and extending learning with open‑ended
+          materials. Families describe me as warm and dependable; colleagues say I’m organized and eager to help.
+        </p>
+      </div>
+      <div>
+        <h3>What I Bring</h3>
+        <ul>
+          <li>Play‑based, inquiry‑led planning with clear learning goals</li>
+          <li>Positive guidance and emotion‑coaching strategies</li>
+          <li>Daily health, safety, and sanitation routines</li>
+          <li>Documentation (photos, learning stories, portfolios)</li>
+          <li>Respectful, professional communication with families</li>
+        </ul>
+        <div class="statbar" role="list">
+          <div class="stat" role="listitem"><b>2</b><span>Work Placements</span></div>
+          <div class="stat" role="listitem"><b>4</b><span>Age Groups Supported</span></div>
+          <div class="stat" role="listitem"><b>∞</b><span>Patience &amp; Play</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="placements" class="container">
+    <h2 class="section-title">Field Placements</h2>
+    <p class="section-sub">Highlights from my two childcare placements. (References available upon request.)</p>
+
+    <div class="grid cards">
+      <article class="card">
+        <span class="badge">Placement #1</span>
+        <h3>Tykes of Columbus Child Care Centre • Whitby, ON</h3>
+        <div class="meta">May 27, 2025 – Present • Preschool (2.5–4 yrs)</div>
+        <ul>
+          <li>Set up daily invitations to play (sensory, art, blocks, dramatic play)</li>
+          <li>Promoted self‑help skills during routines (snack, washroom, dressing)</li>
+          <li>Observed and documented learning with photos and quick notes</li>
+          <li>Assisted with small‑group experiences and transitions</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <span class="badge">Placement #2</span>
+        <h3>Helping Hands Daycare • Whitby, ON</h3>
+        <div class="meta">Jan 27, 2025 – Mar 14, 2025 • Toddler (18–30 mos)</div>
+        <ul>
+          <li>Created cozy, safe spaces and choice‑based activities</li>
+          <li>Modeled language, turn‑taking, and emotion labeling</li>
+          <li>Followed health &amp; safety policies (cleaning, ratios, supervision)</li>
+          <li>Built trusting relationships with children and families</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section id="skills" class="container">
+    <h2 class="section-title">Skills & Certifications</h2>
+    <p class="section-sub">A snapshot of what I use every day in early learning environments.</p>
+    <div class="tag-stack" style="margin-bottom:12px">
+      <span class="pill">Play‑based Curriculum</span>
+      <span class="pill">Observation &amp; Documentation</span>
+      <span class="pill">Positive Guidance</span>
+      <span class="pill">Health &amp; Safety</span>
+      <span class="pill">Family Communication</span>
+      <span class="pill">Inclusive Practices</span>
+      <span class="pill">CPR/First Aid</span>
+      <span class="pill">ELECT • HDLH</span>
+    </div>
+  </section>
+
+  <section id="contact" class="container">
+    <div class="cta-wrap">
+      <h2 class="section-title">Let’s connect</h2>
+      <p class="section-sub">I’m actively seeking a role where I can support children’s curiosity and well‑being. I’d
+        love to share my résumé and references.</p>
+      <div class="btns">
+        <a class="btn primary" href="mailto:abc@gmail.com">Email Me</a>
+        <a class="btn ghost" href="resume.html">View résumé</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <span class="muted">© <span id="year"></span> Navida Ahmadi</span>
+      <span class="muted">Built with care • Accessible & Responsive</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    function toggleMenu() {
+      const menu = document.querySelector('.menu');
+      if (!menu) return;
+      const isOpen = getComputedStyle(menu).display !== 'none';
+      menu.style.display = isOpen ? 'none' : 'flex';
+    }
+  </script>
+</body>
+
+</html>
+```
+
+---
+
+## philosophy.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Navida Ahmadi – ECE Portfolio | My Philosophy</title>
   <meta name="description" content="Teaching philosophy for an Early Childhood Education portfolio." />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%235c62ff'/><text x='50' y='62' font-size='64' text-anchor='middle' fill='white' font-family='Arial'>℘</text></svg>">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%235c62ff'/><text x='50' y='62' font-size='64' text-anchor='middle' fill='white' font-family='Arial'>℘</text></svg>">
   <style>
-    /* Match the About page look */
-    :root{
-      --bg:#0f1221;--card:#161a2f;--soft:#202544;--text:#e9ecf8;--subtle:#b8bfdd;--brand:#6aa9ff;--accent:#ffd27e;--ok:#73e0a9;--radius-xl:24px;--radius-lg:16px;--radius-md:12px;--shadow-1:0 10px 30px rgba(0,0,0,.35);--shadow-2:0 30px 60px rgba(0,0,0,.45);--maxw:1100px
+    :root {
+      --bg: #0f1221;
+      --card: #161a2f;
+      --soft: #202544;
+      --text: #e9ecf8;
+      --subtle: #b8bfdd;
+      --brand: #6aa9ff;
+      --accent: #ffd27e;
+      --ok: #73e0a9;
+      --radius-xl: 24px;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --shadow-1: 0 10px 30px rgba(0, 0, 0, .35);
+      --shadow-2: 0 30px 60px rgba(0, 0, 0, .45);
+      --maxw: 1100px
     }
-    *{box-sizing:border-box}
-    html,body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
-    a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block}
-    .container{max-width:var(--maxw);margin-inline:auto;padding:clamp(16px,3vw,28px)}
-    .grid{display:grid;gap:clamp(16px,2.5vw,24px)}
 
-    header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg, rgba(15,18,33,.9), rgba(15,18,33,.65));backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid rgba(255,255,255,.06)}
-    .nav{display:flex;align-items:center;justify-content:space-between}
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand-logo{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,var(--brand),#9ed0ff);display:grid;place-items:center;color:#0b1022;font-weight:800}
-    .menu{display:flex;gap:18px;align-items:center}
-    .menu a{color:var(--subtle);padding:10px 12px;border-radius:10px}
-    .menu a:hover,.menu a[aria-current="page"]{background:rgba(255,255,255,.06);color:var(--text)}
-    .cta{background:var(--brand);color:#0b1022;padding:10px 14px;border-radius:12px;font-weight:700;box-shadow:0 10px 20px rgba(106,169,255,.25)}
-    .burger{display:none}
-    @media (max-width:820px){.menu{display:none}.burger{display:grid;place-items:center;border:1px solid rgba(255,255,255,.1);width:44px;height:44px;border-radius:12px}}
+    * {
+      box-sizing: border-box
+    }
 
-    .hero{padding-top:clamp(24px,4vw,48px);padding-bottom:clamp(24px,6vw,72px)}
-    .hero-card{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center}
-    @media (max-width:980px){.hero-card{grid-template-columns:1fr}}
-    .title{font-size:clamp(28px,4.6vw,52px);line-height:1.1;margin:10px 0}
-    .lead{color:var(--subtle)}
-    .banner{border-radius:24px;border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow-2);overflow:hidden}
+    html,
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif
+    }
 
-    section{padding-block:clamp(26px,6vw,80px)}
-    .section-title{font-size:clamp(22px,3.4vw,34px);margin:0 0 12px}
-    .section-sub{color:var(--subtle);margin-bottom:18px}
-    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius-xl);box-shadow:var(--shadow-1);padding:clamp(16px,3vw,28px)}
+    a {
+      color: inherit;
+      text-decoration: none
+    }
 
-    .pill{display:inline-flex;gap:8px;align-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);padding:6px 10px;border-radius:999px;color:var(--subtle);font-size:13px}
+    img {
+      max-width: 100%;
+      display: block
+    }
 
-    .pill-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .container {
+      max-width: var(--maxw);
+      margin-inline: auto;
+      padding: clamp(16px, 3vw, 28px)
+    }
 
-    .grid-2{display:grid;gap:clamp(16px,2.5vw,20px);grid-template-columns:1fr 1fr}
-    @media (max-width:900px){.grid-2{grid-template-columns:1fr}}
+    .grid {
+      display: grid;
+      gap: clamp(16px, 2.5vw, 24px)
+    }
 
-    blockquote{margin:0;padding:18px;border-left:4px solid var(--accent);background:rgba(255,255,255,.06);border-radius:12px}
-    blockquote footer{color:var(--subtle);margin-top:8px}
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: linear-gradient(180deg, rgba(15, 18, 33, .9), rgba(15, 18, 33, .65));
+      backdrop-filter: saturate(1.2) blur(8px);
+      border-bottom: 1px solid rgba(255, 255, 255, .06)
+    }
 
-    .gallery{display:grid;gap:16px;grid-template-columns:repeat(3,1fr)}
-    @media (max-width:980px){.gallery{grid-template-columns:1fr}}
-    figure{background:var(--soft);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden}
-    figcaption{padding:10px 12px;color:var(--subtle);font-size:14px}
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between
+    }
 
-    footer{padding:24px 0;color:var(--subtle)}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--brand), #9ed0ff);
+      display: grid;
+      place-items: center;
+      color: #0b1022;
+      font-weight: 800
+    }
+
+    .menu {
+      display: flex;
+      gap: 18px;
+      align-items: center
+    }
+
+    .menu a {
+      color: var(--subtle);
+      padding: 10px 12px;
+      border-radius: 10px
+    }
+
+    .menu a:hover,
+    .menu a[aria-current="page"] {
+      background: rgba(255, 255, 255, .06);
+      color: var(--text)
+    }
+
+    .cta {
+      background: var(--brand);
+      color: #0b1022;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-weight: 700;
+      box-shadow: 0 10px 20px rgba(106, 169, 255, .25)
+    }
+
+    .burger {
+      display: none
+    }
+
+    @media (max-width:820px) {
+      .menu {
+        display: none
+      }
+
+      .burger {
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(255, 255, 255, .1);
+        width: 44px;
+        height: 44px;
+        border-radius: 12px
+      }
+    }
+
+    .hero {
+      padding-top: clamp(24px, 4vw, 48px);
+      padding-bottom: clamp(24px, 6vw, 72px)
+    }
+
+    .hero-card {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 24px;
+      align-items: center
+    }
+
+    @media (max-width:980px) {
+      .hero-card {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .title {
+      font-size: clamp(28px, 4.6vw, 52px);
+      line-height: 1.1;
+      margin: 10px 0
+    }
+
+    .lead {
+      color: var(--subtle)
+    }
+
+    .banner {
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, .08);
+      box-shadow: var(--shadow-2);
+      overflow: hidden
+    }
+
+    section {
+      padding-block: clamp(26px, 6vw, 80px)
+    }
+
+    .section-title {
+      font-size: clamp(22px, 3.4vw, 34px);
+      margin: 0 0 12px
+    }
+
+    .section-sub {
+      color: var(--subtle);
+      margin-bottom: 18px
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-1);
+      padding: clamp(16px, 3vw, 28px)
+    }
+
+    .pill {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .1);
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--subtle);
+      font-size: 13px
+    }
+
+    .pill-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px
+    }
+
+    .grid-2 {
+      display: grid;
+      gap: clamp(16px, 2.5vw, 20px);
+      grid-template-columns: 1fr 1fr
+    }
+
+    @media (max-width:900px) {
+      .grid-2 {
+        grid-template-columns: 1fr
+      }
+    }
+
+    blockquote {
+      margin: 0;
+      padding: 18px;
+      border-left: 4px solid var(--accent);
+      background: rgba(255, 255, 255, .06);
+      border-radius: 12px
+    }
+
+    blockquote footer {
+      color: var(--subtle);
+      margin-top: 8px
+    }
+
+    .gallery {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(3, 1fr)
+    }
+
+    @media (max-width:980px) {
+      .gallery {
+        grid-template-columns: 1fr
+      }
+    }
+
+    figure {
+      background: var(--soft);
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 16px;
+      overflow: hidden
+    }
+
+    figcaption {
+      padding: 10px 12px;
+      color: var(--subtle);
+      font-size: 14px
+    }
+
+    footer {
+      padding: 24px 0;
+      color: var(--subtle)
+    }
   </style>
 </head>
+
 <body>
   <header>
     <div class="container nav">
-      <a class="brand" href="about.html" aria-label="Home">
+      <a class="brand" href="index.html" aria-label="Home">
         <div class="brand-logo">🌱</div>
         <span>Navida Ahmadi • ECE</span>
       </a>
       <nav class="menu" aria-label="Primary">
-        <a href="about.html">About</a>
+        <a href="index.html#about">About</a>
         <a href="#" aria-current="page">My Philosophy</a>
-        <a href="about.html#placements">Placements</a>
-        <a href="about.html#skills">Skills</a>
-        <a class="cta" href="about.html#contact">Contact</a>
+        <a href="index.html#placements">Placements</a>
+        <a href="index.html#skills">Skills</a>
+        <a href="resume.html">Resume/CV</a>
+        <a class="cta" href="index.html#contact">Contact</a>
       </nav>
       <button class="burger" aria-label="Open menu" onclick="toggleMenu()">☰</button>
     </div>
@@ -82,7 +841,8 @@
       <div>
         <span class="pill">Teaching Philosophy</span>
         <h1 class="title">My Philosophy: Relationships, Inclusion & Play</h1>
-        <p class="lead">I support each child’s whole development—physical, cognitive, social‑emotional, communication, language, and literacy—through responsive relationships and rich, play‑based experiences.</p>
+        <p class="lead">I support each child’s whole development—physical, cognitive, social‑emotional, communication,
+          language, and literacy—through responsive relationships and rich, play‑based experiences.</p>
         <div class="pill-row" aria-label="Guiding pillars">
           <span class="pill">Play‑based</span>
           <span class="pill">Inclusive</span>
@@ -92,9 +852,7 @@
         </div>
       </div>
       <div class="banner">
-        <!-- You can replace this with one of your images
-             Example local path: assets/philosophy-hero.jpg -->
-        <img src="assets/na.png" alt="Warm classroom scene with books and globe"/>
+        <img src="assets/na.png" alt="Warm classroom scene" />
       </div>
     </div>
   </main>
@@ -102,11 +860,23 @@
   <section class="container">
     <div class="card">
       <h2 class="section-title">My Philosophy Statement</h2>
-      <p>As an Early Childhood Educator, I believe it is my responsibility to support the growth and development of infants, toddlers, preschoolers, and school‑age children in all domains—physical, cognitive, social‑emotional, communication, language, and literacy. I am passionate about creating opportunities for children to learn through play and hands‑on experiences, as these methods allow me to observe their interests, model positive behavior, and adapt instruction to meet each child’s individual skills and abilities.</p>
-      <p>My goal is to build an inclusive and welcoming environment where children and families from all backgrounds feel respected, valued, and at home. I place great importance on building strong, trusting relationships with both children and their families. By fostering open and ongoing communication, I can work in partnership with families and other professionals to support each child’s unique needs, routines, and learning plans.</p>
-      <p>Inclusion is at the heart of my philosophy. I want every child in my care to feel safe, supported, and encouraged to explore at their own pace while achieving their individual goals. I strive to create a classroom where children collaborate, develop a love for learning, and gain confidence in themselves. My hope is that each child leaves the classroom each day with a sense of accomplishment, new knowledge, and a growing curiosity about the world around them—excitement that will inspire them to return the next day eager to learn more.</p>
+      <p>As an Early Childhood Educator, I believe it is my responsibility to support the growth and development of
+        infants, toddlers, preschoolers, and school‑age children in all domains—physical, cognitive, social‑emotional,
+        communication, language, and literacy. I am passionate about creating opportunities for children to learn
+        through play and hands‑on experiences, as these methods allow me to observe their interests, model positive
+        behavior, and adapt instruction to meet each child’s individual skills and abilities.</p>
+      <p>My goal is to build an inclusive and welcoming environment where children and families from all backgrounds
+        feel respected, valued, and at home. I place great importance on building strong, trusting relationships with
+        both children and their families. By fostering open and ongoing communication, I can work in partnership with
+        families and other professionals to support each child’s unique needs, routines, and learning plans.</p>
+      <p>Inclusion is at the heart of my philosophy. I want every child in my care to feel safe, supported, and
+        encouraged to explore at their own pace while achieving their individual goals. I strive to create a classroom
+        where children collaborate, develop a love for learning, and gain confidence in themselves. My hope is that each
+        child leaves the classroom each day with a sense of accomplishment, new knowledge, and a growing curiosity about
+        the world around them—excitement that will inspire them to return the next day eager to learn more.</p>
       <blockquote>
-        <p>“Children learn from anything and everything they see. They learn wherever they are, not just in special learning places.”</p>
+        <p>“Children learn from anything and everything they see. They learn wherever they are, not just in special
+          learning places.”</p>
         <footer>— John Holt, <em>Learning All the Time</em></footer>
       </blockquote>
     </div>
@@ -117,23 +887,26 @@
     <p class="section-sub">A brief visual explanation with attributions.</p>
     <div class="gallery">
       <figure>
-        <img src="/assets/philosophy-wordcloud.jpg" alt="Word cloud with terms like mind, thought, social, cognitive"/>
+        <img src="/assets/philosophy-wordcloud.jpg" alt="Word cloud with terms like mind, thought, social, cognitive" />
         <figcaption>
-          The word cloud highlights how learning involves the <strong>whole child</strong>—mind, body, emotions, and relationships—echoing my inclusive approach.
+          The word cloud highlights how learning involves the <strong>whole child</strong>—mind, body, emotions, and
+          relationships—echoing my inclusive approach.
           <br><small>Source: Depositphotos – “Philosophy stock photos”</small>
         </figcaption>
       </figure>
       <figure>
-        <img src="/assets/education-desk.jpg" alt="Books, globe, pencils on a classroom desk"/>
+        <img src="/assets/education-desk.jpg" alt="Books, globe, pencils on a classroom desk" />
         <figcaption>
-          Tools of learning suggest <strong>hands‑on exploration</strong> and a curated environment where curiosity leads.
+          Tools of learning suggest <strong>hands‑on exploration</strong> and a curated environment where curiosity
+          leads.
           <br><small>Source: Freepik – Education photos</small>
         </figcaption>
       </figure>
       <figure>
-        <img src="/assets/education-art.jpg" alt="Illustration of an open book with a world map and ideas emerging"/>
+        <img src="/assets/education-art.jpg" alt="Illustration of an open book with a world map and ideas emerging" />
         <figcaption>
-          A playful, imaginative view of the world represents <strong>play‑based inquiry</strong> and global citizenship.
+          A playful, imaginative view of the world represents <strong>play‑based inquiry</strong> and global
+          citizenship.
           <br><small>Source: Adobe Stock – Education visuals</small>
         </figcaption>
       </figure>
@@ -180,24 +953,336 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-    function toggleMenu(){
+    function toggleMenu() {
       const menu = document.querySelector('.menu');
-      if(!menu) return; const isOpen = getComputedStyle(menu).display !== 'none';
+      if (!menu) return; const isOpen = getComputedStyle(menu).display !== 'none';
       menu.style.display = isOpen ? 'none' : 'flex';
     }
   </script>
-
-  <!--
-    HOW TO USE
-    1) Save this file as philosophy.html alongside your About page.
-    2) Put your three images in /assets/ as:
-       - philosophy-wordcloud.jpg
-       - education-desk.jpg
-       - education-art.jpg
-       (Or update the <img src> paths accordingly.)
-    3) Replace Navida Ahmadi everywhere. Adjust text as you wish.
-    4) Nav links point back to about.html. If your About file name differs, update those hrefs.
-    5) All styles match your About page for a cohesive portfolio.
-  -->
 </body>
+
 </html>
+```
+
+---
+
+## resume.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Navida Ahmadi – Resume/CV</title>
+  <meta name="description" content="Resume for Early Childhood Educator." />
+  <style>
+    /* Light, professional theme */
+    :root {
+      --bg: #f7f8fc;
+      --paper: #ffffff;
+      --ink: #1b1f2a;
+      --muted: #5c667a;
+      --line: #e5e7ef;
+      --brand: #2b6cb0;
+      --accent: #0ea5e9;
+      --chip: #eef2ff;
+      --radius-lg: 18px;
+      --radius: 12px;
+      --maxw: 1000px;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif
+    }
+
+    a {
+      color: var(--brand);
+      text-decoration: none
+    }
+
+    .container {
+      max-width: var(--maxw);
+      margin: 24px auto;
+      padding: clamp(16px, 3vw, 28px)
+    }
+
+    header.resume {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      justify-content: space-between
+    }
+
+    .name {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 800;
+      letter-spacing: .3px
+    }
+
+    .role {
+      color: var(--brand);
+      font-weight: 700
+    }
+
+    .contact {
+      color: var(--muted)
+    }
+
+    .contact a {
+      color: inherit
+    }
+
+    .grid {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: 2fr 1fr;
+      margin-top: 24px
+    }
+
+    @media (max-width: 960px) {
+      .grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    section.card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 20px
+    }
+
+    h2 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1.6px;
+      color: var(--muted);
+      margin: 0 0 10px
+    }
+
+    h3 {
+      margin: 10px 0 6px
+    }
+
+    ul {
+      margin: 6px 0 0 18px
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px
+    }
+
+    .chip {
+      background: var(--chip);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 13px;
+      color: var(--muted)
+    }
+
+    .two-col {
+      columns: 2;
+      column-gap: 18px
+    }
+
+    @media (max-width:700px) {
+      .two-col {
+        columns: 1
+      }
+    }
+
+    .btns {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 8px
+    }
+
+    .btn {
+      border: 1px solid var(--line);
+      background: var(--paper);
+      border-radius: 10px;
+      padding: 10px 14px;
+      color: var(--brand);
+      font-weight: 700
+    }
+
+    nav.light {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px
+    }
+
+    nav.light a {
+      color: var(--brand);
+      font-weight: 700
+    }
+
+    @media print {
+      body {
+        background: white
+      }
+
+      nav.light,
+      .btns {
+        display: none
+      }
+
+      .container {
+        margin: 0;
+        padding: 0
+      }
+
+      header.resume,
+      section.card {
+        border: 0
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <nav class="light">
+      <a href="index.html">← Back to Portfolio</a>
+      <a href="#" onclick="window.print();return false;">Print / Save PDF</a>
+    </nav>
+
+    <header class="resume">
+      <div>
+        <div class="name">Navida Ahmadi</div>
+        <div class="role">Compassionate & Dedicated Early Childhood Educator</div>
+      </div>
+      <div class="contact">
+        Whitby, Ontario • 647‑333‑5544 • <a href="mailto:abc@gmail.com">abc@gmail.com</a>
+      </div>
+    </header>
+
+    <div class="grid">
+      <section class="card">
+        <h2>Professional Summary</h2>
+        <p>Passionate Early Childhood Educator graduate with hands‑on experience supporting child development in dynamic
+          learning environments. Skilled in creating engaging activities, fostering social‑emotional growth, and
+          maintaining safe, inclusive spaces. Adept at observing children’s needs, implementing curriculum plans, and
+          building trusting relationships with families. Committed to professional growth through reflective practice
+          and current early learning methodologies.</p>
+      </section>
+
+      <aside class="card">
+        <h2>Key Skills</h2>
+        <div class="two-col">
+          <ul>
+            <li>Child Development Observation</li>
+            <li>Curriculum Planning & Implementation</li>
+            <li>Parent/Guardian Communication</li>
+            <li>Creative Arts & Storytelling</li>
+            <li>Documentation & Reporting</li>
+            <li>Play‑Based Learning Strategies</li>
+            <li>Inclusive Practice</li>
+            <li>Classroom Organization</li>
+            <li>Sensory Activity Design</li>
+            <li>Multicultural Awareness</li>
+            <li>Self‑starter</li>
+            <li>Behavior Guidance Techniques</li>
+            <li>Health & Safety Protocols</li>
+            <li>Emergency Preparedness</li>
+            <li>Collaborative Teamwork</li>
+            <li>Special Needs Support</li>
+            <li>Quick learner</li>
+          </ul>
+        </div>
+      </aside>
+
+      <aside class="card">
+        <h2>Specialized Knowledge</h2>
+        <ul>
+          <li><strong>Early Learning Frameworks:</strong> Applied knowledge of <em>How Does Learning Happen?</em> and
+            <em>ELECT</em> principles in daily practice</li>
+          <li><strong>Developmental Milestones:</strong> Supported physical, cognitive, and language development for
+            ages 0–6</li>
+          <li><strong>Safety Standards:</strong> Maintained compliance with <em>Child Care and Early Years Act
+              (CCEYA)</em> regulations</li>
+          <li><strong>Assessment Tools:</strong> Experience with Anecdotal Records and Portfolio Documentation</li>
+          <li><strong>Technology:</strong> Proficient with childcare management apps (e.g., Lillio) and educational
+            software</li>
+        </ul>
+      </aside>
+
+      <aside class="card">
+        <h2>Education</h2>
+        <p><strong>Early Childhood Education Diploma</strong> — Durham College, Oshawa, Ontario<br><em>Expected
+            graduation: April 2026</em></p>
+      </aside>
+
+      <section class="card" style="grid-column:1 / -1">
+        <h2>Professional Experience</h2>
+
+        <h3>Early Childhood Educator Student Placement — Tykes of Columbus Child Care Centre</h3>
+        <div class="chips"><span class="chip">Whitby, ON</span><span class="chip">May 27, 2025 – Present</span></div>
+        <ul>
+          <li>Co‑designed inclusive circle‑time activities (e.g., storybooks with adaptive visuals) to engage diverse
+            learners.</li>
+          <li>Assisted with behavioral guidance using positive reinforcement strategies, reducing peer conflicts.</li>
+          <li>Collaborated with staff to create a calm‑down corner, supporting children’s emotional self‑regulation.
+          </li>
+          <li>Conducted health checks (e.g., allergy monitoring, symptom screening) to uphold provincial licensing
+            standards.</li>
+          <li>Organized outdoor play sessions to promote physical literacy, incorporating natural elements for
+            exploration.</li>
+        </ul>
+
+        <h3>Early Childhood Educator Student Placement — Helping Hands Daycare, Whitby</h3>
+        <div class="chips"><span class="chip">Whitby, ON</span><span class="chip">Jan 27, 2025 – Mar 14, 2025</span>
+        </div>
+        <ul>
+          <li>Supported play‑based learning programs for children aged 18 months–2.5 years, aligned to <em>How Does
+              Learning Happen?</em></li>
+          <li>Facilitated sensory and fine‑motor activities (e.g., textured art projects, stacking games) to meet
+            developmental milestones.</li>
+          <li>Documented observations using anecdotal records to track progress and inform curriculum adjustments.</li>
+          <li>Maintained CCEYA compliance by following safety protocols, including sanitization routines and supervision
+            ratios.</li>
+          <li>Built rapport with families through daily verbal updates and participation.</li>
+        </ul>
+
+        <h3>Childcare Assistant Volunteer — EarlyON</h3>
+        <div class="chips"><span class="chip">Mar 2021 – Jul 2021</span></div>
+        <ul>
+          <li>Supervised and engaged children aged 2–6 through structured play and creative activities.</li>
+          <li>Supported daily routines, including meal/snack times and hygiene practices, ensuring a safe, nurturing
+            environment.</li>
+          <li>Prepared and organized learning materials and play areas to foster cognitive and social development.</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <div class="btns">
+          <a class="btn" href="index.html">Back to Portfolio</a>
+          <a class="btn" href="#" onclick="window.print();return false;">Print / Save PDF</a>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+
+</html>
+```

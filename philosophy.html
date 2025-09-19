@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<br><small>Source: Adobe Stock – Education visuals</small>
+</figcaption>
+</figure>
+</div>
+</section>
+
+
+<section class="container">
+  <div class="card">
+    <h2 class="section-title">What This Looks Like in Practice</h2>
+    <div class="grid-2">
+      <div>
+        <h3>Classroom Practices</h3>
+        <ul>
+          <li>Intentional <strong>invitations to play</strong> with open‑ended materials</li>
+          <li>Positive guidance and <strong>emotion coaching</strong></li>
+          <li>Daily health, safety, and <strong>sanitation routines</strong></li>
+          <li>Observation notes, photos, and <strong>learning stories</strong></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Family Partnerships</h3>
+        <ul>
+          <li>Warm, consistent communication about learning and routines</li>
+          <li>Respect for <strong>home languages</strong> and cultural practices</li>
+          <li>Collaborating with professionals on <strong>individual plans</strong></li>
+          <li>Sharing resources that extend learning at home</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pill-row" style="margin-top:14px">
+      <span class="pill">ELECT • HDLH</span>
+      <span class="pill">Inclusive Practices</span>
+      <span class="pill">CPR/First Aid</span>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="container" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+    <span>© <span id="year"></span> Navida Ahmadi</span>
+    <span class="subtle">Images credited to their respective sources.</span>
+  </div>
+</footer>
+
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  function toggleMenu() {
+    const menu = document.querySelector('.menu');
+    if (!menu) return; const isOpen = getComputedStyle(menu).display !== 'none';
+    menu.style.display = isOpen ? 'none' : 'flex';
+  }
+</script>
+</body>
+
+</html>
